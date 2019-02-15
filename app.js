@@ -67,19 +67,20 @@ io.on('connection', function(socket) {
 
   console.log(data);
 
-  // socket.on('data', function(data) {
-  //   device.addData(data.id,data.data,function (err,model) {
-  //     if(err){
-  //       console.log(err);
-  //     }else{
-  //       console.log("AddDone");
-  //     }
-  //
-  //   })
-  // });
+  socket.on('data', function(data) {
+    console.log(data);
+    // device.addData(data.id,data.data,function (err,model) {
+    //   if(err){
+    //     console.log(err);
+    //   }else{
+    //     console.log("AddDone");
+    //   }
+    //
+    // })
+  });
 
-  // this.id = data.id;
-  // console.log("socketIO established with module: " + data.id + " id: " + this.socket.id);
-  // clients.push({ ModuleId: data.id, SocketId: this.socket.id, value: this.socket });  });
-});
+//   this.id = data.id;
+//   console.log("socketIO established with module: " + data.id + " id: " + this.socket.id);
+//   clients.push({ ModuleId: data.id, SocketId: this.socket.id, value: this.socket });  });
+// });
 // var io = require('./socket').listen(http)
