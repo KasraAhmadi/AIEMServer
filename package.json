@@ -1,0 +1,15 @@
+{
+  "name": "iot_controller",
+  "version": "1.0.0",
+  "description": "A Service for controlling linux based devices",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Kasra Ahmadi",
+  "license": "ISC",
+  "dependencies": {
+    "mongoose": "^5.4.8",
+    "mongoose-auto-increment": "^5.0.1"
+  }
+}
