@@ -69,6 +69,8 @@ io.on('connection', function(socket) {
 					device.addData(Jdata.module_id, Jdata.data, function(err, model, id) {
 							if (err) {
 								if (err == "no_device") {
+									console.log("no_device");
+
 								} else {
 									console.log("AddDone");
 								}
