@@ -45,17 +45,7 @@ function Register(socket, data) {
 }
 
 
-// var newDevice = new device({
-// 	module_id: '10'
-// });
-//
-// device.addDevice(newDevice, function(err, model) {
-// 	if (err) {
-// 		console.log("Error in adding device");
-// 	}else{
-// 		console.log("Device added Ok");
-// 	}
-// });
+
 
 
 
@@ -70,6 +60,17 @@ io.on('connection', function(socket) {
 							if (err) {
 								if (err == "no_device") {
 									console.log("no_device");
+									var newDevice = new device({
+										module_id: Jdata.module_id
+									});
+
+									device.addDevice(newDevice, function(err, model) {
+										if (err) {
+											console.log("Error in adding device");
+										}else{
+											console.log("Device added Ok");
+										}
+									});
 								}
 						}else {
 							console.log("AddDone");
