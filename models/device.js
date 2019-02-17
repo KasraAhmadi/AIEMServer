@@ -35,6 +35,8 @@ module.exports.addData = function(id, newData, callback) {
 		if (err) {
 			return callback("err");
 		} else if (model == null) {
+			console.log("Inner id is:");
+			console.log(id);
 			return callback("no_device",null,id)
 		}
 		return callback(null);
