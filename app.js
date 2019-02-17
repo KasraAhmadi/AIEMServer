@@ -59,6 +59,8 @@ io.on('connection', function(socket) {
 	});
 
 	socket.on('data', function(data) {
+		console.log("kos khare harkat");
+		console.log(data.module_id);
 		device.addData(data.module_id, data.data, function(err, model,id) {
 			var MyId = data.module_id
 			console.log(MyId)
