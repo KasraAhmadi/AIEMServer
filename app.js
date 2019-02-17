@@ -55,17 +55,10 @@ function Register(socket, data) {
 //   numerator: "P2",
 //   lift_status:10
 // }
-
-
-
-
-
 io.on('connection', function(socket) {
   socket.on('Register', function(data) {
 	Register(socket, data);
   });
-
-  console.log(data);
 
   socket.on('data', function(data) {
 	console.log(data);
