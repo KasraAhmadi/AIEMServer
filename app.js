@@ -62,6 +62,7 @@ io.on('connection', function(socket) {
 		device.addData(data.module_id, data.data, function(err, model) {
 			if (err) {
 				if (err == "no_device") {
+					console.log(data.module_id);
 					var myDevice = new device({
 						module_id: data.module_id
 					});
