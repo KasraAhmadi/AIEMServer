@@ -70,7 +70,6 @@ io.on('connection', function(socket) {
 							if (err) {
 								if (err == "no_device") {
 									console.log("no_device");
-
 								} else {
 									console.log("AddDone");
 								}
