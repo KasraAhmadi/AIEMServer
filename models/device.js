@@ -25,7 +25,6 @@ module.exports.addDevice = function(device, callback) {
 }
 
 module.exports.addData = function(id, newData, callback) {
-	var kasra = "Kasra";
 	device.findOneAndUpdate({
 		id: id
 	}, {
@@ -37,7 +36,6 @@ module.exports.addData = function(id, newData, callback) {
 			log
 			return callback("err");
 		} else if (model == null) {
-			console.log(kasra);
 			return callback("no_device")
 		}
 		return callback(null);
