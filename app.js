@@ -68,7 +68,7 @@ io.on('connection', function(socket) {
 					})
 					device.addDevice(newDevice, function(err, model) {
 						if (err) {
-							console.log("Error in addding device");
+							console.log(err);
 						}
 					});
 				}

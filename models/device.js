@@ -2,7 +2,7 @@ var mongoose = require('mongoose');
 
 var DeviceSchema = mongoose.Schema({
 	module_id: {
-		type: Number,
+		type: String,
 		unique: true,
 		required: true
 	},
