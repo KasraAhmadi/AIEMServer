@@ -44,6 +44,20 @@ function Register(socket, data) {
 	});
 }
 
+
+var newDevice = new device({
+	module_id: Jdata.module_id
+});
+
+device.addDevice(newDevice, function(err, model) {
+	if (err) {
+		console.log("Error in adding device");
+	}else{
+		console.log("Device added Ok");
+	}
+});
+
+
 // let sampleData = {
 //   direction: 1,
 //   time: "2019-02-10 21:55:03",
@@ -63,15 +77,7 @@ io.on('connection', function(socket) {
 					device.addData(Jdata.module_id, Jdata.data, function(err, model, id) {
 							if (err) {
 								if (err == "no_device") {
-									var newDevice = new device({
-										module_id: Jdata.module_id
-									});
-									device.addDevice(newDevice, function(err, model) {
-										if (err) {
-											console.log(newDevice);
-											console.log("Error in adding device");
-										}
-									});
+
 								} else {
 									console.log("AddDone");
 								}
