@@ -24,8 +24,8 @@ module.exports.addDevice = function(device, callback) {
 	device.save(callback);
 }
 
-module.exports.addData = function(id, newData, callback)
-	console.log("MYID IS:::::");
+module.exports.addData = function(id, newData, callback){
+	console.log("MYID Is")
 	console.log(id);
 	var myId = "2023"
 	device.findOneAndUpdate({
