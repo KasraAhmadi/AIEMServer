@@ -27,8 +27,11 @@ module.exports.addDevice = function (device, callback) {
 module.exports.addData = function (id, newData, callback) {
 	device.findOneAndUpdate({id:id}, { $push: { data: newData } }, function (err, model) {
 		if (err) {
-			console.log("KIRRRRRRRRR");
+			console.log("KIRRRRRRRRR1");
 			return callback("err");
+		}
+		else if(model == null){
+			console.log("KIRRRR2");
 		}
 		return callback(null);
 	});
