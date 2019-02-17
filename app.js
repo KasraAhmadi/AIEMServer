@@ -9,7 +9,7 @@ var device = require('./models/device');
 
 
 var connection = mongoose.connect('mongodb://localhost/iotController', {
-  useNewUrlParser: true
+	useNewUrlParser: true
 });
 
 var allSockets = []
@@ -21,7 +21,7 @@ var ssh = require('./routes/ssh');
 // BodyParser Middleware
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({
-  extended: false
+	extended: false
 }));
 // Set Static Folder
 app.use(express.static(path.join(__dirname, 'public')));
@@ -32,16 +32,16 @@ app.set('port', (process.env.PORT || 80));
 app.use('/ssh', ssh);
 
 server.listen(app.get('port'), function() {
-  console.log('Server started on port ' + app.get('port'));
+	console.log('Server started on port ' + app.get('port'));
 });
 
 function Register(socket, data) {
-  console.log("socketIO established with module: " + " id: " + socket.id);
-  allSockets.push({
-	moduleId: data.moduleId,
-	SocketId: socket.id,
-	value: socket
-  });
+	console.log("socketIO established with module: " + " id: " + socket.id);
+	allSockets.push({
+		moduleId: data.moduleId,
+		SocketId: socket.id,
+		value: socket
+	});
 }
 
 // let sampleData = {
@@ -54,24 +54,30 @@ function Register(socket, data) {
 //   lift_status:10
 // }
 io.on('connection', function(socket) {
-  socket.on('Register', function(data) {
-	Register(socket, data);
-  });
+	socket.on('Register', function(data) {
+		Register(socket, data);
+	});
 
-  socket.on('data', function(data) {
-	console.log(data);
-	device.addData(data.module_id,data.data,function (err,model) {
-	  if(err){
-		console.log(err);
-	}else{
-		console.log("AddDone");
-	  }
+	socket.on('data', function(data) {
+		console.log(data);
+		device.addData(data.module_id, data.data, function(err, model) {
+			if (err) {
+				if (err == "no_device") {
+					device.addDevice(data.module_id, function(err, model) {
+						if (err) {
+							console.log("Error in addding device");
+						}
+					});
+				}
+			} else {
+				console.log("AddDone");
+			}
 
-	})
-  });
+		})
+	});
 
-//   this.id = data.id;
-//   console.log("socketIO established with module: " + data.id + " id: " + this.socket.id);
-//   clients.push({ ModuleId: data.id, SocketId: this.socket.id, value: this.socket });  });
- });
+	//   this.id = data.id;
+	//   console.log("socketIO established with module: " + data.id + " id: " + this.socket.id);
+	//   clients.push({ ModuleId: data.id, SocketId: this.socket.id, value: this.socket });  });
+});
 // var io = require('./socket').listen(http)
