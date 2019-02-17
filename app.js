@@ -46,7 +46,7 @@ function Register(socket, data) {
 
 
 var newDevice = new device({
-	module_id: Jdata.module_id
+	module_id: '10'
 });
 
 device.addDevice(newDevice, function(err, model) {
@@ -77,7 +77,6 @@ io.on('connection', function(socket) {
 					device.addData(Jdata.module_id, Jdata.data, function(err, model, id) {
 							if (err) {
 								if (err == "no_device") {
-
 								} else {
 									console.log("AddDone");
 								}
