@@ -45,28 +45,20 @@ function Register(socket, data) {
 }
 
 
-var newDevice = new device({
-	module_id: '10'
-});
+// var newDevice = new device({
+// 	module_id: '10'
+// });
+//
+// device.addDevice(newDevice, function(err, model) {
+// 	if (err) {
+// 		console.log("Error in adding device");
+// 	}else{
+// 		console.log("Device added Ok");
+// 	}
+// });
 
-device.addDevice(newDevice, function(err, model) {
-	if (err) {
-		console.log("Error in adding device");
-	}else{
-		console.log("Device added Ok");
-	}
-});
 
 
-// let sampleData = {
-//   direction: 1,
-//   time: "2019-02-10 21:55:03",
-//   in_call: [0,1,2],
-//   out_call_up: [],
-//   out_call_down: [5,6],
-//   numerator: "P2",
-//   lift_status:10
-// }
 io.on('connection', function(socket) {
 			socket.on('Register', function(data) {
 				Register(socket, data);
