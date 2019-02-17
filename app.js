@@ -44,8 +44,6 @@ function Register(socket, data) {
   });
 }
 
-
-
 // let sampleData = {
 //   direction: 1,
 //   time: "2019-02-10 21:55:03",
@@ -65,7 +63,7 @@ io.on('connection', function(socket) {
 	device.addData(data.module_id,data.data,function (err,model) {
 	  if(err){
 		console.log(err);
-	  }else{
+	}else{
 		console.log("AddDone");
 	  }
 
