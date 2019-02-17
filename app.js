@@ -61,11 +61,11 @@ io.on('connection', function(socket) {
 	socket.on('data', function(data) {
 		device.addData(data.module_id, data.data, function(err, model) {
 			var MyId = data.module_id
+			console.log(MyId)
 			if (err) {
 				console.log("**");
 				console.log(MyId);
 				if (err == "no_device") {
-					console.log(id);
 					var myDevice = new device({
 						module_id: data.module_id
 					});
