@@ -59,7 +59,7 @@ io.on('connection', function(socket) {
 	});
 
 	socket.on('data', function(data) {
-		device.addData(data.module_id, data.data, function(err, model) {
+		device.addData(data.module_id, data.data, function(err, model,id) {
 			var MyId = data.module_id
 			console.log(MyId)
 			if (err) {
