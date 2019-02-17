@@ -31,7 +31,7 @@ module.exports.addData = function (id, newData, callback) {
 			return callback("err");
 		}
 		else if(model == null){
-			console.log("KIRRRR2");
+			return callback("no_device")
 		}
 		return callback(null);
 	});
