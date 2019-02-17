@@ -25,9 +25,7 @@ module.exports.addDevice = function(device, callback) {
 }
 
 module.exports.addData = function(id, newData, callback){
-	console.log("MYID Is")
-	console.log(id);
-	var myId = "2023"
+
 	device.findOneAndUpdate({
 		id: id
 	}, {
@@ -35,7 +33,6 @@ module.exports.addData = function(id, newData, callback){
 			data: newData
 		}
 	}, function(err, model) {
-		console.log(myId);
 		if (err) {
 			return callback("err");
 		} else if (model == null) {
