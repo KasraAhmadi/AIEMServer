@@ -82,4 +82,6 @@ io.on('connection', function(socket) {
 				//   console.log("socketIO established with module: " + data.id + " id: " + this.socket.id);
 				//   clients.push({ ModuleId: data.id, SocketId: this.socket.id, value: this.socket });  });
 			});
+		});
+
 		// var io = require('./socket').listen(http)
