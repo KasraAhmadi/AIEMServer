@@ -38,9 +38,9 @@ server.listen(app.get('port'), function() {
 function Register(socket, data) {
   console.log("socketIO established with module: " + " id: " + socket.id);
   allSockets.push({
-    moduleId: data.moduleId,
-    SocketId: socket.id,
-    value: socket
+	moduleId: data.moduleId,
+	SocketId: socket.id,
+	value: socket
   });
 }
 
@@ -62,21 +62,21 @@ function Register(socket, data) {
 
 io.on('connection', function(socket) {
   socket.on('Register', function(data) {
-    Register(socket, data);
+	Register(socket, data);
   });
 
   console.log(data);
 
   socket.on('data', function(data) {
-    console.log(data);
-    // device.addData(data.id,data.data,function (err,model) {
-    //   if(err){
-    //     console.log(err);
-    //   }else{
-    //     console.log("AddDone");
-    //   }
-    //
-    // })
+	console.log(data);
+	device.addData(data.module_id,data.data,function (err,model) {
+	  if(err){
+		console.log(err);
+	  }else{
+		console.log("AddDone");
+	  }
+
+	})
   });
 
 //   this.id = data.id;
