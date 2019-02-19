@@ -8,7 +8,7 @@ var io = require('socket.io')(server);
 var device = require('./models/device');
 
 
-var connection = mongoose.connect('mongodb://localhost/iotController', {
+var connection = mongoose.connect('mongodb://kasra:HammerOn070@localhost/iotController', {
 	useNewUrlParser: true
 });
 
@@ -72,6 +72,8 @@ io.on('connection', function(socket) {
 										}
 									});
 								}
+						}else{
+							console.log("Data added");
 						}
 					});
 
