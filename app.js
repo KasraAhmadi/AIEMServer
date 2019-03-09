@@ -51,7 +51,7 @@ function Register(socket, data) {
 
 function refreshData()
 {
-	if len(allSockets) != 0{
+	if allSockets.length != 0{
 		socket.broadcast.emit('Alive', { data: 'A' });
 		console.log("broadcast to allSockets");
 	}
