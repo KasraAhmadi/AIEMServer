@@ -63,6 +63,7 @@ io.on('connection', function(socket) {
 		console.log(reason);
 		for (i = 0; i < allSockets.length; i++) {
 			if (allSockets[i].SocketId == socket.id) {
+				console.log("SPLICE THE SOCKET");
 				allSockets.splice(i, 1);
 			}
 		}
