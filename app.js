@@ -62,7 +62,7 @@ io.on('connection', function(socket) {
 	socket.on('disconnect',function(reason){
 		console.log(reason);
 		for (i = 0; i < allSockets.length; i++) {
-			if (allSockets[i].ModuleId == data.moduleId) {
+			if (allSockets[i].SocketId == socket.id) {
 				allSockets.splice(i, 1);
 			}
 		}
