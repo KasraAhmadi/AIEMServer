@@ -55,7 +55,7 @@ function refreshData()
 		io.emit('Alive', { data: 'A' });
 		console.log("broadcast to allSockets");
 	}
-	setTimeout(refreshData(), 5000);
+	setTimeout(refreshData, 5000);
 }
 
 refreshData()
