@@ -51,7 +51,10 @@ function Register(socket, data) {
 
 function refreshData()
 {
-	console.log("KIR");
+	if len(allSockets) != 0{
+		socket.broadcast.emit('Alive', { data: 'A' });
+		console.log("broadcast to allSockets");
+	}
 	setTimeout(refreshData, 5000);
 }
 
