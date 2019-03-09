@@ -52,7 +52,7 @@ function Register(socket, data) {
 function refreshData()
 {
 	if (allSockets.length != 0) {
-		io.emit('Alive', { data: 'A' });
+		allSockets[0].value.emit('Alive', { data: 'A' });
 		console.log("broadcast to allSockets");
 	}
 	setTimeout(refreshData, 5000);
