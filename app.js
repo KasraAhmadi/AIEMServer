@@ -49,7 +49,11 @@ function Register(socket, data) {
 	});
 }
 
-
+function refreshData()
+{
+	console.log("KIR");
+	setTimeout(refreshData, 5000);
+}
 
 
 
