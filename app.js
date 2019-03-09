@@ -36,6 +36,11 @@ server.listen(app.get('port'), function() {
 });
 
 function Register(socket, data) {
+	for (i = 0; i < allSockets.length; i++) {
+		if (allSockets[i].ModuleId == data.moduleId) {
+			allSockets.splice(i, 1);
+		}
+	}
 	console.log("socketIO established with module: " + " id: " + socket.id);
 	allSockets.push({
 		moduleId: data.moduleId,
@@ -50,35 +55,41 @@ function Register(socket, data) {
 
 
 io.on('connection', function(socket) {
-			socket.on('Register', function(data) {
-				Register(socket, data);
-			});
+	socket.on('Register', function(data) {
+		Register(socket, data);
+	});
 
-			socket.on('data', function(data) {
-					var Jdata = JSON.parse(data)
-					device.addData(Jdata.module_id, Jdata.data, function(err, model, id) {
-							if (err) {
-								if (err == "no_device") {
-									console.log("no_device");
-									var newDevice = new device({
-										module_id: Jdata.module_id
-									});
+	socket.on('disconnect',function(reason){
+		console.log(reason);
+		for (i = 0; i < allSockets.length; i++) {
+			if (allSockets[i].ModuleId == data.moduleId) {
+				allSockets.splice(i, 1);
+			}
+		}
+	});
 
-									device.addDevice(newDevice, function(err, model) {
-										if (err) {
-											console.log("Error in adding device");
-										}else{
-											console.log("Device added Ok");
-										}
-									});
-								}
-						}
+
+	socket.on('data', function(data) {
+		var Jdata = JSON.parse(data)
+		device.addData(Jdata.module_id, Jdata.data, function(err, model, id) {
+			if (err) {
+				if (err == "no_device") {
+					console.log("no_device");
+					var newDevice = new device({
+						module_id: Jdata.module_id
 					});
 
-				//   this.id = data.id;
-				//   console.log("socketIO established with module: " + data.id + " id: " + this.socket.id);
-				//   clients.push({ ModuleId: data.id, SocketId: this.socket.id, value: this.socket });  });
+					device.addDevice(newDevice, function(err, model) {
+						if (err) {
+							console.log("Error in adding device");
+						} else {
+							console.log("Device added Ok");
+						}
+					});
+				}
+			}
 			});
-		});
 
-		// var io = require('./socket').listen(http)
+		});
+	});
+});
