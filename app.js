@@ -55,7 +55,7 @@ function refreshData()
 	setTimeout(refreshData, 5000);
 }
 
-
+refreshData()
 
 
 io.on('connection', function(socket) {
