@@ -49,19 +49,20 @@ function Register(socket, data) {
 	});
 }
 
-function refreshData()
+function refreshData(socket)
 {
 	if (allSockets.length != 0) {
 		socket.broadcast.emit('Alive', { data: 'A' });
 		console.log("broadcast to allSockets");
 	}
-	setTimeout(refreshData, 5000);
+	setTimeout(refreshData(socket), 5000);
 }
 
-refreshData()
+
 
 
 io.on('connection', function(socket) {
+	refreshData(socket)
 	socket.on('Register', function(data) {
 		Register(socket, data);
 	});
