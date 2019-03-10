@@ -58,27 +58,28 @@ server.listen(app.get('port'), function() {
 });
 
 function Register(socket, data) {
-	for (i = 0; i < allSockets.length; i++) {
+	for (let i = 0; i < allSockets.length; i++) {
 		if (allSockets[i].moduleId == data.moduleId) {
 			allSockets.splice(i, 1);
 		}
 	}
+
 	console.log("socketIO established with module: " + " id: " + socket.id);
 	allSockets.push({
 		moduleId: data.moduleId,
 		SocketId: socket.id,
 		value: socket
 	});
-	console.log(allSockets);
 }
 
 function BroadcastData() {
 
-	for (i = 0; i < allSockets.length; i++) {}
-	allSockets[i].value.emit('Alive', {
-		data: 'A'
-	});
-	setTimeout(refreshData, 5000);
+	for (let i = 0; i < allSockets.length; i++) {
+		allSockets[i].value.emit('Alive', {
+			data: 'A'
+		});
+	}
+	setTimeout(BroadcastData, 5000);
 }
 
 BroadcastData()
