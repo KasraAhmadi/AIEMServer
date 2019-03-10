@@ -8,35 +8,28 @@ var allSockets = app.allSockets;
 
 router.post('/', function(req, res, next) {
 
-
-
-
-	if(req.body.moduleId != ""  && req.body.Password == "kasraahmadi"){
+	if (req.body.moduleId != "" && req.body.Password == "kasraahmadi") {
 		var socket = null;
-		console.log(allSockets.length);
+		console.log(allSockets[0]);
 		for (let i = 0; i < allSockets.length; i++) {
-		  if (allSockets[i].moduleId == req.body.moduleId) {
-			socket = allSockets[i].value;
-			break;
-		  }
+			if (allSockets[i].moduleId == req.body.moduleId) {
+				socket = allSockets[i].value;
+				break;
+			}
 		}
-
-		if (socket == null){
-		  return res.send("Device not connected")
+		if (socket == null) {
+			return res.send("Device not connected")
 		}
 
 		socket.emit('ssh');
 		res.send("send command succefully")
-	}else{
+	} else {
 		res.send("Error")
 	}
-
-
-
 });
 
 
-router.get('/', function (req, res) {
+router.get('/', function(req, res) {
 	res.render('admin');
 });
 

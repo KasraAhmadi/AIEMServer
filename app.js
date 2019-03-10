@@ -59,7 +59,7 @@ server.listen(app.get('port'), function() {
 
 function Register(socket, data) {
 	for (i = 0; i < allSockets.length; i++) {
-		if (allSockets[i].ModuleId == data.moduleId) {
+		if (allSockets[i].moduleId == data.moduleId) {
 			allSockets.splice(i, 1);
 		}
 	}
@@ -69,6 +69,7 @@ function Register(socket, data) {
 		SocketId: socket.id,
 		value: socket
 	});
+	console.log(allSockets);
 }
 
 function refreshData()
