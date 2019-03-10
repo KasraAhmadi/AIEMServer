@@ -6,6 +6,9 @@ var app = require('express')();
 var server = require('http').Server(app);
 var io = require('socket.io')(server);
 var device = require('./models/device');
+var exphbs = require('express-handlebars');
+
+
 
 
 var connection = mongoose.connect('mongodb://kasra:HammerOn070@localhost/iotController', {
@@ -25,6 +28,25 @@ app.use(bodyParser.urlencoded({
 }));
 // Set Static Folder
 app.use(express.static(path.join(__dirname, 'public')));
+
+//View Engine
+app.set('views', path.join(__dirname, 'views'));
+
+
+var hbs = exphbs.create({
+	helpers: {
+		json: function (value, options) {
+			return JSON.stringify(value);
+		}
+	},
+	defaultLayout: 'layout'
+});
+
+app.engine('handlebars', hbs.engine);
+app.set('view engine', 'handlebars');
+
+
+
 
 // Set Port
 app.set('port', (process.env.PORT || 80));

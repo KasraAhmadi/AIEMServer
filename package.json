@@ -9,7 +9,7 @@
   "author": "Kasra Ahmadi",
   "license": "ISC",
   "dependencies": {
-    "mongoose": "^5.4.8",
+    "mongoose": "^5.4.18",
     "mongoose-auto-increment": "^5.0.1"
   }
 }
