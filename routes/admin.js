@@ -28,4 +28,12 @@ router.post('/', function(req, res, next) {
 	msg: "ssh_called_succefully"
   });
 });
+
+
+router.get('/', function (req, res) {
+
+		res.send("Hello User");
+});
+
+
 module.exports = router;
