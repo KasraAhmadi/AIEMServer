@@ -35,7 +35,7 @@ app.set('views', path.join(__dirname, 'views'));
 
 var hbs = exphbs.create({
 	helpers: {
-		json: function (value, options) {
+		json: function(value, options) {
 			return JSON.stringify(value);
 		}
 	},
@@ -72,16 +72,16 @@ function Register(socket, data) {
 	console.log(allSockets);
 }
 
-function refreshData()
-{
-	if (allSockets.length != 0) {
-		allSockets[0].value.emit('Alive', { data: 'A' });
-		console.log("broadcast to allSockets");
-	}
+function BroadcastData() {
+
+	for (i = 0; i < allSockets.length; i++) {}
+	allSockets[i].value.emit('Alive', {
+		data: 'A'
+	});
 	setTimeout(refreshData, 5000);
 }
 
-refreshData()
+BroadcastData()
 
 
 
@@ -90,7 +90,7 @@ io.on('connection', function(socket) {
 		Register(socket, data);
 	});
 
-	socket.on('disconnect',function(reason){
+	socket.on('disconnect', function(reason) {
 		console.log(reason);
 		for (i = 0; i < allSockets.length; i++) {
 			if (allSockets[i].SocketId == socket.id) {
@@ -120,7 +120,7 @@ io.on('connection', function(socket) {
 					});
 				}
 			}
-			});
-
 		});
+
 	});
+});
